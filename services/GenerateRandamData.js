@@ -1,5 +1,6 @@
-export const generateRandomData = (deviceId) => {
+const generateRandomData = (deviceId, time) => {
     const obj = {
+        time: time,
         deviceId: deviceId,
         humidity: Math.floor(Math.random() * 10000) / 100,
         temperature: Math.floor(Math.random()*150) / 10 + 20,
@@ -24,4 +25,18 @@ export const generateRandomData = (deviceId) => {
     };
 
     return obj;
+}
+
+export const generateListOfData = (diviceId, number, time, timeInterval) => {
+    const dataList = [];
+    let startTime = time;
+
+    for (let i=0; i<number; i++){
+        const newObj = generateRandomData(diviceId, startTime);
+        // console.log(newObj);
+        dataList.push(newObj);
+        startTime += timeInterval;
+    }
+
+    return dataList;
 }
